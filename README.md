@@ -1,6 +1,6 @@
 # project_name
 
-Django 3.1.1 + Postgres 11 + Dokku config (Production Ready)
+Django 3.2.12 + Postgres 11 + Dokku config (Production Ready)
 
 ## Documentation ##
 
@@ -162,3 +162,8 @@ Optional: Additional nginx configuration (like client_max_body_size) should be p
 ```
 
 > Further dokku configuration can be found here: http://dokku.viewdocs.io/dokku/
+
+#### Rename project: ####
+sudo docker-compose up --build
+sudo make init
+sudo docker-compose up --remove-orphans

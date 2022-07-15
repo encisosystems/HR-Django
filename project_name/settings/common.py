@@ -35,6 +35,7 @@ DEPENDENCIES_APPS = [
 
 PROJECT_APPS = [
     'main',
+    'hr',
 ]
 
 ADDONS = [

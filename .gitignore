@@ -23,3 +23,5 @@ static/
 
 !media/.keep
 !static/.keep
+
+**/migrations/**

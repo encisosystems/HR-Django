@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('main.urls')),
     path('admin/', admin.site.urls),
+    path('hr/', include('hr.urls', namespace='hr')),
 ]
 
 if not settings.IS_PRODUCTION:

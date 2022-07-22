@@ -1,0 +1,20 @@
+[
+    {
+      "model": "hr.Area",
+      "pk": 1,
+      "fields": {
+          "areaName": "Finance",
+          "areaDescription": "Cash flow management",
+          "areaCode": "Fin_01"
+      }
+    },
+    {
+      "model": "hr.Area",
+      "pk": 2,
+      "fields": {
+        "areaName": "HumanResource",
+        "areaDescription": "To obtain and retain a work force whose characteristics are in accordance with the company's objectives, through adequate recruitment, selection, training and development programs.",
+        "areaCode": "Hr_01"
+      }
+    }
+]

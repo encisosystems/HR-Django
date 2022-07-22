@@ -25,10 +25,14 @@ class RecruitmentView(generic.FormView):
         return reverse('hr:recruitment')
 
     def form_valid(self, form):
-        recruitment = form.save(commit=True)
-        user = self.request.user
-        form.instance.user = user
-        form.save()
+        recruitment = Recruitment()
+        recruitment.requester = form.cleaned_data['requester']
+        recruitment.departament = '1'
+        recruitment.departament_req = form.cleaned_data['departament_req']
+        recruitment.numberOfVacancies = form.cleaned_data['numberOfVacancies']
+        recruitment.title_req = form.cleaned_data['title_req']
+        recruitment.location = form.cleaned_data['location']
+        recruitment.save()
         return super(RecruitmentView, self).form_valid(form)
 
 class JobDescriptionView(generic.FormView):

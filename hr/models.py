@@ -38,10 +38,12 @@ class JobDescription(models.Model):
         help_text="User creating the job description")
     creationDate = models.DateField(
         verbose_name = 'Creation date',
+        auto_now_add=True,
         help_text="Creation date for job description")
     code = models.CharField(
         verbose_name = 'Code',
-        max_length=250, 
+        max_length=250,
+        blank=True, 
         help_text="ID of the job description")
     title = models.CharField(
         verbose_name = 'Title',
@@ -55,7 +57,8 @@ class JobDescription(models.Model):
         help_text="Department/Area associated with the job description")
     reportTo = models.CharField(
         verbose_name = 'Report to',
-        max_length=250, 
+        max_length=250,
+        blank=True, 
         help_text="Immediate supervisor associated with the job description")
     jobDescription = models.CharField(
         verbose_name = 'Job description',
@@ -63,27 +66,33 @@ class JobDescription(models.Model):
         help_text="Job description")
     responsabilities = models.CharField(
         verbose_name = 'Responsabilities',
-        max_length=500, 
+        max_length=500,
+        blank=True, 
         help_text="Job functions")
     skills = models.CharField(
         verbose_name = 'Skills',
-        max_length=500, 
+        max_length=500,
+        blank=True, 
         help_text="The capacities to perform tasks that you are developed")
     abilities = models.CharField(
         verbose_name = 'Abilities',
         max_length=250,
+        blank=True,
         help_text="Talents you are born with.")
     experience = models.CharField(
         verbose_name = 'Experience',
         max_length=250,
+        blank=True,
         help_text="Time of experience on the job")
     educationRequirements = models.CharField(
         verbose_name = 'Education requirements',
         max_length=250,
+        blank=True,
         help_text="Level of education required")
     knowledge = models.CharField(
         verbose_name = 'Knowledge',
         max_length=250,
+        blank=True,
         help_text="Knowledge required for the job")
     annualSalary = models.DecimalField(
         verbose_name = 'Annual salary', 
@@ -97,8 +106,8 @@ class JobDescription(models.Model):
         verbose_name_plural = 'Job descriptions'
 
     def __str__(self):
-        """Return code job description"""
-        return self.code
+        """Return title of the job description"""
+        return self.title
 
 class Recruitment(models.Model):
     """  
@@ -109,37 +118,32 @@ class Recruitment(models.Model):
 
     requester = models.CharField(
         verbose_name = 'Requester',
-        max_length=250, 
+        max_length=100, 
         help_text="User who created the request")
     dateOfRequest = models.DateField(
         verbose_name = 'Date of request',
+        auto_now_add=True,
         help_text="Date of recruitment request")
-    departament = models.ForeignKey(
-        Area,
-        null=False,
-        on_delete=models.CASCADE,
-        verbose_name = 'Departament',
-        help_text="Department/Area that require the recruitment")
     departament_req = models.CharField(
         verbose_name = 'Departament',
         max_length=250, 
         help_text="Department/Area that require the recruitment - requester")
-    jobDescription = models.ForeignKey(
-        JobDescription,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE,
+    jobDescription = models.CharField(
+        max_length=250,
+        blank=False,
         verbose_name = 'Job description',
         help_text="Associated job description")
     startingDate = models.DateField(
         verbose_name = 'Starting date',
+        auto_now_add=True,
         help_text="Start date of the job")
     numberOfVacancies = models.PositiveIntegerField(
         verbose_name = 'Number of vacancies',
         help_text="Number of vacancies available")
     title = models.CharField(
         verbose_name = 'Title',
-        max_length=250, 
+        max_length=250,
+        blank=False, 
         help_text="Name of vacancy")
     title_req = models.CharField(
         verbose_name = 'Title',
@@ -147,7 +151,8 @@ class Recruitment(models.Model):
         help_text="Name of vacancy - requester")
     responsabilities = models.CharField(
         verbose_name = 'Responsabilities',
-        max_length=500, 
+        max_length=500,
+        blank=True, 
         help_text="Job functions")
     location = models.CharField(
         verbose_name = 'Location',
@@ -161,6 +166,7 @@ class Recruitment(models.Model):
     requisitionApproved = models.BooleanField(
         verbose_name = 'Requisition approved', 
         default=False,
+        blank=True, 
         help_text="Requisition Approved?")
     approvalsComments = models.CharField(
         verbose_name = 'Approvals comments',
@@ -174,4 +180,4 @@ class Recruitment(models.Model):
 
     def __str__(self):
         """Return title of recruitment"""
-        return self.title
+        return self.title_req

@@ -8,7 +8,26 @@
 <div class="container bg-white pt-2 pb-2 mt-3 mb-3">
     <form id="jobD" method="post" action="">
         {% csrf_token %}
-              
+        <div class="form-floating mb-3">
+            {{ form.createdBy}}
+            <label for="createdBy">Created By</label>
+        </div>
+        <div class="form-floating mb-3">
+            {{ form.title}}
+            <label for="title">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+            {{ form.departament}}
+            <label for="departament">Departament/Area</label>
+        </div>    
+        <div class="form-floating mb-3">
+            {{ form.jobDescription}}
+            <label for="jobDescription">Job Description</label>
+        </div>
+        <div class="form-floating mb-3">
+            {{ form.annualSalary}}
+            <label for="annualSalary">Annual Salary</label>
+        </div>      
         <div id="btn_save" class="d-flex col-md-12 justify-content-center">
             <input type="submit" class="btn btn-md bg-gray w-25" value="Save">
         </div>

@@ -3,10 +3,16 @@ from tkinter import Widget
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import JobDescription, Recruitment
+from .models import JobDescription, Recruitment, Area
 
 class AddJobDescriptionForm(forms.Form):
     """ Form creation - AddJobDescription Form """
+
+    AREA_CHOICES = [
+        ('', 'Select Departament/Area'),
+        ('1', 'Finance'),
+        ('2', 'HumanResource'),
+    ] 
 
     createdBy = forms.CharField(
         label = 'Created By',
@@ -32,11 +38,11 @@ class AddJobDescriptionForm(forms.Form):
         required = True,
         widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': ""})
     )
-    departament = forms.CharField(
+    departament = forms.ChoiceField(
         label = 'Departament',
-        max_length = 250,
         required = True,
-        widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': ""})
+        widget = forms.Select(attrs={'class': 'form-control', 'placeholder': ""}),
+        choices = AREA_CHOICES
     )
     reportTo = forms.CharField(
         label = 'Report To',

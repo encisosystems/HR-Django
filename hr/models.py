@@ -51,7 +51,7 @@ class JobDescription(models.Model):
         help_text="Title/name of the job description")
     departament = models.ForeignKey(
         Area,
-        null=False,
+        null=True,
         on_delete=models.CASCADE,  
         verbose_name = 'Departament',
         help_text="Department/Area associated with the job description")

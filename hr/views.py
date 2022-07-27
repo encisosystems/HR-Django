@@ -4,7 +4,7 @@ from django.views import generic
 from django.conf import settings 
 
 from hr.forms import AddJobDescriptionForm, AddRecruitmentForm
-from hr.models import JobDescription, Recruitment
+from hr.models import JobDescription, Recruitment, Area
 
 
 class RecruitmentView(generic.FormView):
@@ -54,8 +54,16 @@ class JobDescriptionView(generic.FormView):
         return reverse('hr:jobDescription')
 
     def form_valid(self, form):
-        job = form.save(commit=True)
-        user = self.request.user
-        form.instance.user = user
-        form.save()
+        jobDescription = JobDescription()
+        jobDescription.createdBy = form.cleaned_data['createdBy']
+        jobDescription.title = form.cleaned_data['title']
+        jobDescription.departament = Area.objects.get(id=form.cleaned_data['departament'])
+        jobDescription.jobDescription = form.cleaned_data['jobDescription']
+        jobDescription.annualSalary = form.cleaned_data['annualSalary']
+        jobDescription.save()
         return super(JobDescriptionView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(JobDescriptionView, self).get_context_data(**kwargs)
+        context['areas'] = Area.objects.all()
+        return context

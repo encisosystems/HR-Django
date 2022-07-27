@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import JobDescription, Recruitment, Area
 
-# Register your models here.
+admin.site.register(Area)
+admin.site.register(JobDescription)
+admin.site.register(Recruitment)

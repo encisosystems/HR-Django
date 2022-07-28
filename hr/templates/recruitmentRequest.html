@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
     Recruitment Request
@@ -6,7 +7,7 @@
 
 {% block content %}
 <div class="container bg-white pt-2 pb-2 mt-3 mb-3">
-    <form id="recReq" method="post" action="">
+    <form id="recReq" method="post" action="completeTask();">
         {% csrf_token %}
         <div class="m-3 p-2">
             <h3>Recruitment Request</h3>
@@ -37,3 +38,7 @@
     </form>
 </div>
 {% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/camundaREST.js' %}"></script>
+{% endblock js %}

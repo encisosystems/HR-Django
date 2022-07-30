@@ -19,7 +19,9 @@ tests/report/
 env/
 
 media/
+static/
 
 !media/.keep
+!static/.keep
 
 **/migrations/**
